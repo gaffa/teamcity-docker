@@ -15,6 +15,10 @@ RUN apt-get update && apt-get -y --force-yes install git libfontconfig maven3 gr
 RUN npm install -g karma karma-cli karma-phantomjs-launcher karma-jasmine karma-jasmine-jquery karma-junit-reporter karma-ng-html2js-preprocessor
 RUN npm install karma karma-cli karma-phantomjs-launcher karma-jasmine karma-jasmine-jquery karma-junit-reporter karma-ng-html2js-preprocessor
 
+# maven-binary
+RUN rm -f /usr/bin/mvn
+RUN ln -s /usr/share/maven3/bin/mvn /usr/bin/mvn
+
 # expose port
 EXPOSE 9090
 
