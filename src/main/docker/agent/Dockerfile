@@ -10,7 +10,8 @@ RUN apt-get --quiet --yes install oracle-java8-installer
 RUN apt-get --quiet --yes install oracle-java8-set-default
 
 # install tools needed for build
-RUN apt-get update && apt-get -y install git libfontconfig maven nodejs nodejs-legacy npm docker.io
+RUN echo 'deb http://ppa.launchpad.net/natecarlson/maven3/ubuntu precise main' | sudo tee /etc/apt/sources.list.d/natec.list
+RUN apt-get update && apt-get -y --force-yes install git libfontconfig maven3 gradle nodejs nodejs-legacy npm docker.io
 RUN npm install -g karma karma-cli karma-phantomjs-launcher karma-jasmine karma-jasmine-jquery karma-junit-reporter karma-ng-html2js-preprocessor
 RUN npm install karma karma-cli karma-phantomjs-launcher karma-jasmine karma-jasmine-jquery karma-junit-reporter karma-ng-html2js-preprocessor
 
