@@ -17,7 +17,7 @@ RUN apt-get --quiet --yes install oracle-java8-installer
 RUN apt-get --quiet --yes install oracle-java8-set-default
 
 # install tools needed for build
-RUN apt-get -y --force-yes install git libfontconfig maven3 gradle nodejs nodejs-legacy npm docker.io
+RUN apt-get -y --force-yes install git libfontconfig maven3 gradle nodejs nodejs-legacy npm docker.io curl
 
 # install node packages
 RUN npm install -g karma karma-cli karma-phantomjs-launcher karma-jasmine karma-jasmine-jquery karma-junit-reporter karma-ng-html2js-preprocessor
