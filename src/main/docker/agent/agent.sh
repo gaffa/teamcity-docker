@@ -25,4 +25,8 @@ if [ ! -d "$AGENT_DIR" ]; then
 else
     echo "Using agent at ${AGENT_DIR}."
 fi
+
+export M2_HOME=/usr/share/maven3/
+export MAVEN_HOME=/usr/share/maven3/
+
 $AGENT_DIR/bin/agent.sh run
