@@ -4,18 +4,18 @@ teamcity-docker
 docker containers for teamcity ci
 
 
-Build Server
-    docker build -t server src/main/docker/server/
+Build Server (you dont need to build it if you dont change anything - its available on dockerhub)
+    docker build -t gaffa/teamcity-server src/main/docker/server/
 Launch Server
-    docker run -dt -p 8111:8111 --name server server
+    docker run -dt -p 8111:8111 --name teamcity-server gaffa/teamcity-server
 
-Build Agent
-    docker build -t agent src/main/docker/agent/
+Build Agent (you dont need to build it if you dont change anything - its available on dockerhub)
+    docker build -t gaffa/teamcity-agent src/main/docker/agent/
 Launch Agent
     Same Host:
-        docker run -v /var/run/docker.sock:/var/run/docker.sock -e TEAMCITY_SERVER=http://server:8111 --link server:server -dt --name agent agent
+        docker run -v /var/run/docker.sock:/var/run/docker.sock -e TEAMCITY_SERVER=http://server:8111 --link teamcity-server:server -dt --name teamcity-agent gaffa/teamcity-agent
     Different Hosts:
-        docker run -v /var/run/docker.sock:/var/run/docker.sock -e TEAMCITY_SERVER=http://ip:8111 -dt -p 9090:9090 --name agent agent
+        docker run -v /var/run/docker.sock:/var/run/docker.sock -e TEAMCITY_SERVER=http://ip:8111 -dt -p 9090:9090 --name teamcity-agent gaffa/teamcity-agent
 
 
 You need to authorize the agent in the server. Also you may need to docker stop agent / docker start agent for agent upgrade.
