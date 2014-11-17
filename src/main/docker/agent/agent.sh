@@ -26,6 +26,8 @@ else
     echo "Using agent at ${AGENT_DIR}."
 fi
 
+# export DOCKER_HOST=`netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}'`
+export DOCKER_HOST=`/sbin/ip route|awk '/default/ { print $3 }'`
 export M2_HOME=/usr/share/maven3/
 export MAVEN_HOME=/usr/share/maven3/
 
