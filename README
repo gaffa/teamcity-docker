@@ -13,9 +13,9 @@ Build Agent (you dont need to build it if you dont change anything - its availab
     docker build -t gaffa/teamcity-agent src/main/docker/agent/
 Launch Agent
     Same Host:
-        docker run -v /var/run/docker.sock:/var/run/docker.sock -e TEAMCITY_SERVER=http://server:8111 --link teamcity-server:server -dt --name teamcity-agent gaffa/teamcity-agent
+        docker run -v /var/run/docker.sock:/var/run/docker.sock -e TEAMCITY_SERVER=http://server:8111 -e DOCKER_HOST=`netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}'` --link teamcity-server:server -dt --name teamcity-agent gaffa/teamcity-agent
     Different Hosts:
-        docker run -v /var/run/docker.sock:/var/run/docker.sock -e TEAMCITY_SERVER=http://ip:8111 -dt -p 9090:9090 --name teamcity-agent gaffa/teamcity-agent
+        docker run -v /var/run/docker.sock:/var/run/docker.sock -e TEAMCITY_SERVER=http://ip:8111 -e DOCKER_HOST=`netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}'` -dt -p 9090:9090 --name teamcity-agent gaffa/teamcity-agent
 
 
 You need to authorize the agent in the server. Also you may need to docker stop agent / docker start agent for agent upgrade.
