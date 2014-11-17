@@ -27,9 +27,10 @@ RUN npm install karma karma-cli karma-phantomjs-launcher karma-jasmine karma-jas
 RUN rm -f /usr/bin/mvn
 RUN ln -s /usr/share/maven3/bin/mvn /usr/bin/mvn
 
+# install teamcity agent
+ADD agent.sh /agent.sh
+
 # expose port
 EXPOSE 9090
 
-# install teamcity agent
-ADD agent.sh /agent.sh
 CMD sudo -s -- sh -c "TEAMCITY_SERVER=$TEAMCITY_SERVER bash /agent.sh run"

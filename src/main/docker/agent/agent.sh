@@ -22,12 +22,12 @@ if [ ! -d "$AGENT_DIR" ]; then
     echo "workDir=../work" >> $AGENT_DIR/conf/buildAgent.properties
     echo "tempDir=../temp" >> $AGENT_DIR/conf/buildAgent.properties
     echo "systemDir=../system" >> $AGENT_DIR/conf/buildAgent.properties
+    # netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}'`
+    echo "system.HOST_IP=`/sbin/ip route|awk '/default/ { print $3 }'`" >> $AGENT_DIR/conf/buildAgent.properties
 else
     echo "Using agent at ${AGENT_DIR}."
 fi
 
-# export DOCKER_HOST=`netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}'`
-export DOCKER_HOST=`/sbin/ip route|awk '/default/ { print $3 }'`
 export M2_HOME=/usr/share/maven3/
 export MAVEN_HOME=/usr/share/maven3/
 
