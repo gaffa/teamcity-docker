@@ -23,7 +23,7 @@ if [ ! -d "$AGENT_DIR" ]; then
     echo "tempDir=../temp" >> $AGENT_DIR/conf/buildAgent.properties
     echo "systemDir=../system" >> $AGENT_DIR/conf/buildAgent.properties
     # netstat -nr | grep '^0\.0\.0\.0' | awk '{print $2}'`
-    echo "env.HOST_IP=`/sbin/ip route|awk '/default/ { print $3 }'`" >> $AGENT_DIR/conf/buildAgent.properties
+    echo "env.AGENT_HOST_IP=`/sbin/ip route|awk '/default/ { print $3 }'`" >> $AGENT_DIR/conf/buildAgent.properties
 else
     echo "Using agent at ${AGENT_DIR}."
 fi
